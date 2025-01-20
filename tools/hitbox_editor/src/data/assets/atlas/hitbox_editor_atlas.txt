@@ -1,0 +1,68 @@
+hitbox_editor_atlas.png
+size: 64, 128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arrow_down_button
+  rotate: false
+  xy: 2, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+arrow_left_button
+  rotate: false
+  xy: 20, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+arrow_right_button
+  rotate: false
+  xy: 38, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+arrow_up_button
+  rotate: false
+  xy: 2, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+editor_button_backing
+  rotate: false
+  xy: 20, 20
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: -1
+hitbox_frame_data
+  rotate: false
+  xy: 2, 38
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+hurtbox_frame_data
+  rotate: false
+  xy: 14, 38
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+origin_reticule
+  rotate: false
+  xy: 26, 38
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+play_button
+  rotate: false
+  xy: 2, 50
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: -1

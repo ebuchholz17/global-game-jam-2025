@@ -1,0 +1,10 @@
+consoleLog
+rngSeedFromTime
+readFile
+onError
+getMemCapacity
+rendererResize
+webglOnRenderStart
+webglLoadTexture
+webglSpriteBatchStart
+webglSpriteBatchFlush

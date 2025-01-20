@@ -1,0 +1,271 @@
+game_atlas.png
+size: 500, 210
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+block_blink
+  rotate: false
+  xy: 44, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+blue_tile
+  rotate: false
+  xy: 92, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+bone_1
+  rotate: false
+  xy: 126, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+cyan_tile
+  rotate: false
+  xy: 160, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+dpad_down_down
+  rotate: false
+  xy: 104, 80
+  size: 42, 54
+  orig: 42, 54
+  offset: 0, 0
+  index: -1
+dpad_down_up
+  rotate: false
+  xy: 148, 80
+  size: 42, 54
+  orig: 42, 54
+  offset: 0, 0
+  index: -1
+dpad_left_down
+  rotate: false
+  xy: 274, 36
+  size: 54, 42
+  orig: 54, 42
+  offset: 0, 0
+  index: -1
+dpad_left_up
+  rotate: false
+  xy: 330, 36
+  size: 54, 42
+  orig: 54, 42
+  offset: 0, 0
+  index: -1
+dpad_right_down
+  rotate: false
+  xy: 386, 36
+  size: 54, 42
+  orig: 54, 42
+  offset: 0, 0
+  index: -1
+dpad_right_up
+  rotate: false
+  xy: 442, 36
+  size: 54, 42
+  orig: 54, 42
+  offset: 0, 0
+  index: -1
+dpad_up
+  rotate: false
+  xy: 192, 80
+  size: 42, 54
+  orig: 42, 54
+  offset: 0, 0
+  index: -1
+dpad_up_down
+  rotate: false
+  xy: 236, 80
+  size: 42, 54
+  orig: 42, 54
+  offset: 0, 0
+  index: -1
+dpad_up_up
+  rotate: false
+  xy: 280, 80
+  size: 42, 54
+  orig: 42, 54
+  offset: 0, 0
+  index: -1
+driver
+  rotate: false
+  xy: 194, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+enemy_1
+  rotate: false
+  xy: 80, 2
+  size: 10, 18
+  orig: 10, 18
+  offset: 0, 0
+  index: -1
+enemy_2
+  rotate: false
+  xy: 22, 2
+  size: 20, 12
+  orig: 20, 12
+  offset: 0, 0
+  index: -1
+enemy_3
+  rotate: false
+  xy: 2, 2
+  size: 18, 11
+  orig: 18, 11
+  offset: 0, 0
+  index: -1
+face_button_down
+  rotate: false
+  xy: 2, 80
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+face_button_up
+  rotate: false
+  xy: 53, 80
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+fireball_0
+  rotate: false
+  xy: 228, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+flag
+  rotate: false
+  xy: 324, 80
+  size: 30, 118
+  orig: 30, 118
+  offset: 0, 0
+  index: -1
+ghost_0
+  rotate: false
+  xy: 262, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+ghoul_0
+  rotate: false
+  xy: 296, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+golfer_blue_swing_2
+  rotate: false
+  xy: 330, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+golfer_red_swing_2
+  rotate: false
+  xy: 364, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+golfman
+  rotate: false
+  xy: 398, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+green_tile
+  rotate: false
+  xy: 432, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+iron
+  rotate: false
+  xy: 466, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+magenta_tile
+  rotate: false
+  xy: 2, 36
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+putter
+  rotate: false
+  xy: 36, 36
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+red_tile
+  rotate: false
+  xy: 70, 36
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+sheep
+  rotate: false
+  xy: 104, 36
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+skeleton
+  rotate: false
+  xy: 138, 36
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+sun
+  rotate: false
+  xy: 356, 80
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+tile_backing
+  rotate: false
+  xy: 62, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+wedge
+  rotate: false
+  xy: 172, 36
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+wind_arrow
+  rotate: false
+  xy: 206, 36
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yellow_tile
+  rotate: false
+  xy: 240, 36
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
