@@ -64,4 +64,7 @@ typedef struct sprite_text {
     char *fontKey;
 } sprite_text;
 
+sprite defaultSprite (void);
+void spriteManAddSprite (sprite s);
+
 #endif

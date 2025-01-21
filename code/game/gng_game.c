@@ -13,7 +13,7 @@
 plat_console_log *debugConsoleLog;
 
 #include "hitbox/hitbox.c"
-#include "block_game/block_game.c"
+#include "sponge_game/sponge_game.c"
 
 void loadTextureOnGPU (mem_arena *renderMemory, u32 id, u32 width, u32 height, u8 *pixels) {
     render_cmd_header *header = (render_cmd_header *)allocMemory(renderMemory, sizeof(render_cmd_header));
@@ -222,7 +222,7 @@ UPDATE_GNG_GAME(updateGNGGame) {
     if (!state->initialized) {
         state->initialized = true;
 
-        state->blockGame = (block_game){};
+        state->spongeGame = (SpongeGame){};
 
         setRNGSeed(platAPI.rngSeedFromTime());
 
@@ -240,17 +240,17 @@ UPDATE_GNG_GAME(updateGNGGame) {
         // TODO: preprocessed string IDs
         asset_to_load_listPush(assetList, (asset_to_load){
             .name = "atlas_data",
-            .path = "assets/atlas.txt",
+            .path = "assets/game_atlas.txt",
             .type = ASSET_TO_LOAD_TYPE_ATLAS_DATA,
             .loaded = false,
-            .key = "atlas"
+            .key = "game_atlas"
         });
         asset_to_load_listPush(assetList, (asset_to_load){
             .name = "atlas_texture",
-            .path = "assets/atlas.bmp",
+            .path = "assets/game_atlas.bmp",
             .type = ASSET_TO_LOAD_TYPE_ATLAS_TEXTURE,
             .loaded = false,
-            .key = "atlas"
+            .key = "game_atlas"
         });
         asset_to_load_listPush(assetList, (asset_to_load){
             .name = "font",
@@ -258,27 +258,6 @@ UPDATE_GNG_GAME(updateGNGGame) {
             .type = ASSET_TO_LOAD_TYPE_BITMAP,
             .loaded = false,
             .key = "font"
-        });
-        asset_to_load_listPush(assetList, (asset_to_load){
-            .name = "sheep_circle_attack",
-            .path = "assets/hitbox/sheep_circle_attack",
-            .type = ASSET_TO_LOAD_TYPE_DATA,
-            .loaded = false,
-            .key = "sheep_circle_attack"
-        });
-        asset_to_load_listPush(assetList, (asset_to_load){
-            .name = "sheep_stomp_attack",
-            .path = "assets/hitbox/sheep_stomp_attack",
-            .type = ASSET_TO_LOAD_TYPE_DATA,
-            .loaded = false,
-            .key = "sheep_stomp_attack"
-        });
-        asset_to_load_listPush(assetList, (asset_to_load){
-            .name = "sfx_impact",
-            .path = "assets/impact.wav",
-            .type = ASSET_TO_LOAD_TYPE_WAV,
-            .loaded = false,
-            .key = "sfx_impact"
         });
         for (u32 assetIndex = 0; assetIndex < assetList->numValues; ++assetIndex) {
             asset_to_load *asset = &assetList->values[assetIndex];
@@ -371,8 +350,8 @@ UPDATE_GNG_GAME(updateGNGGame) {
     f32 screenWidth = (f32)platAPI.windowWidth;
     f32 screenHeight = (f32)platAPI.windowHeight;
 
-    f32 gameWidth = 640.0f;
-    f32 gameHeight = 360.0f;
+    f32 gameWidth = 356.0f;
+    f32 gameHeight = 200.0f;
     f32 normalAspectRatio = gameWidth / gameHeight;
 
     f32 actualAspectRatio = screenWidth / screenHeight;
@@ -394,13 +373,13 @@ UPDATE_GNG_GAME(updateGNGGame) {
     }
 
     if (state->assetMan.allFilesLoaded) {
-        //if (state->blockGame.reset) {
-        //    state->blockGame = (block_game){};
-        //    initBlockGame(&state->blockGame, &state->memory);
+        //if (state->spongeGame.reset) {
+        //    state->spongeGame = (sponge_game){};
+        //    initspongeGame(&state->spongeGame, &state->memory);
         //}
 
-        if (!state->blockGame.isInitialized) {
-            initBlockGame(&state->blockGame, &state->memory);
+        if (!state->spongeGame.isInitialized) {
+            initSpongeGame(&state->spongeGame, &state->memory);
         }
 
         state->t += dt;
@@ -423,13 +402,13 @@ UPDATE_GNG_GAME(updateGNGGame) {
             }
             remainingTime -= updateDelta;
 
-            updateBlockGame(&state->blockGame, input, &state->vInput, timeStep, platAPI, &state->memory);
+            updateSpongeGame(&state->spongeGame, input, &state->vInput, timeStep, platAPI, &state->memory);
 
             resetInput(input, &state->vInput);
         }
 
 
-        drawBlockGame(&state->blockGame, platAPI);
+        drawSpongeGame(&state->spongeGame, platAPI);
         spriteManPopMatrix();
 
     }

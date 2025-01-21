@@ -414,7 +414,7 @@ void spriteManPushTransform (sprite_transform transform) {
     spriteManPushMatrix(matrix);
 }
 
-sprite defaultSprite () {
+sprite defaultSprite (void) {
     sprite result = {
         .scale = 1.0f,
         .alpha = 1.0f,

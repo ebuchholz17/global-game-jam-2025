@@ -1,0 +1,89 @@
+game_atlas.png
+size: 58, 548
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dpad_down_down
+  rotate: false
+  xy: 2, 2
+  size: 42, 54
+  orig: 42, 54
+  offset: 0, 0
+  index: -1
+dpad_down_up
+  rotate: false
+  xy: 2, 58
+  size: 42, 54
+  orig: 42, 54
+  offset: 0, 0
+  index: -1
+dpad_left_down
+  rotate: false
+  xy: 2, 114
+  size: 54, 42
+  orig: 54, 42
+  offset: 0, 0
+  index: -1
+dpad_left_up
+  rotate: false
+  xy: 2, 158
+  size: 54, 42
+  orig: 54, 42
+  offset: 0, 0
+  index: -1
+dpad_right_down
+  rotate: false
+  xy: 2, 202
+  size: 54, 42
+  orig: 54, 42
+  offset: 0, 0
+  index: -1
+dpad_right_up
+  rotate: false
+  xy: 2, 246
+  size: 54, 42
+  orig: 54, 42
+  offset: 0, 0
+  index: -1
+dpad_up_down
+  rotate: false
+  xy: 2, 290
+  size: 42, 54
+  orig: 42, 54
+  offset: 0, 0
+  index: -1
+dpad_up_up
+  rotate: false
+  xy: 2, 346
+  size: 42, 54
+  orig: 42, 54
+  offset: 0, 0
+  index: -1
+face_button_down
+  rotate: false
+  xy: 2, 402
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+face_button_up
+  rotate: false
+  xy: 2, 453
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+platform
+  rotate: false
+  xy: 2, 504
+  size: 48, 8
+  orig: 48, 8
+  offset: 0, 0
+  index: -1
+sponge_man
+  rotate: false
+  xy: 2, 514
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

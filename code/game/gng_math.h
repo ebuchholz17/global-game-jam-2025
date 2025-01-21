@@ -27,4 +27,7 @@ typedef struct rect {
     vec2 max;
 } rect;
 
+vec2 vec2Add (vec2 a, vec2 b);
+vec2 vec2Subtract (vec2 a, vec2 b);
+
 #endif
