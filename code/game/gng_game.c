@@ -238,6 +238,7 @@ UPDATE_GNG_GAME(updateGNGGame) {
         asset_to_load_list *assetList = &state->assetMan.assetToLoadList;
 
         // TODO: preprocessed string IDs
+        // TODO: ATLASES CLOBBER MEMORY IN WEB BUILD!!! investigate
         asset_to_load_listPush(assetList, (asset_to_load){
             .name = "atlas_data",
             .path = "assets/game_atlas.txt",
@@ -251,6 +252,13 @@ UPDATE_GNG_GAME(updateGNGGame) {
             .type = ASSET_TO_LOAD_TYPE_ATLAS_TEXTURE,
             .loaded = false,
             .key = "game_atlas"
+        });
+        asset_to_load_listPush(assetList, (asset_to_load){
+            .name = "background",
+            .path = "assets/background.bmp",
+            .type = ASSET_TO_LOAD_TYPE_BITMAP,
+            .loaded = false,
+            .key = "background"
         });
         asset_to_load_listPush(assetList, (asset_to_load){
             .name = "font",

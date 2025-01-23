@@ -13,7 +13,10 @@
 #define SPONGE_AIR_CONTROL 600.0f
 
 #define NUM_SPONGE_PLATFORMS 4
-#define GROUND_Y 150.0f
+#define GROUND_Y 160.0f
+
+#define NUM_TILE_ROWS 25
+#define NUM_TILE_COLS 45
 
 //typedef char_anim_data *char_anim_data_ptr;
 //#define HASH_MAP_TYPE char_anim_data_ptr
@@ -55,6 +58,18 @@ typedef struct SpongePlatform {
     f32 length;
 } SpongePlatform;
 
+typedef enum {
+    TILE_COATING_TYPE_NONE,
+    TILE_COATING_TYPE_SUDS,
+    TILE_COATING_TYPE_GRIME
+} TileCoatingType;
+
+typedef struct TileCoating {
+    TileCoatingType type;
+    i32 amount;
+    b32 isGround;
+} TileCoating;
+
 typedef struct SpongeGame {
     b32 isInitialized;
     SpongeMan spongeMan;
@@ -63,6 +78,7 @@ typedef struct SpongeGame {
     //char_anim_data_ptr_hash_map animations;
     //
     SpongePlatform platforms[NUM_SPONGE_PLATFORMS];
+    TileCoating levelTileCoatings[NUM_TILE_ROWS * NUM_TILE_COLS];
 } SpongeGame;
 
 

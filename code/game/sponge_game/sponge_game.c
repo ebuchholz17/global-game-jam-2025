@@ -9,37 +9,63 @@ SpongeGame *spongeGame;
 void initSpongeGame(SpongeGame *sg, mem_arena *memory) {
     spongeGame = sg;
     SpongeMan *spongeMan = &spongeGame->spongeMan;
-    spongeMan->pos = (vec2){ .x = 0.0f, .y = GROUND_Y };
+    spongeMan->pos = (vec2){ .x = 160.0f, .y = GROUND_Y - 16.0f };
     spongeMan->grounded = true;
 
     spongeGame->platforms[0] = (SpongePlatform){
         .pos = (vec2){
-            .x = 100.0f,
-            .y = GROUND_Y - 32.0f
+            .x = 64.0f,
+            .y = 96.0f,
         },
         .length = 48.0f
     };
     spongeGame->platforms[1] = (SpongePlatform){
         .pos = (vec2){
-            .x = 50.0f,
-            .y = GROUND_Y - 64.0f
+            .x = 112.0f,
+            .y = 112.0f,
         },
-        .length = 48.0f
+        .length = 40.0f
     };
     spongeGame->platforms[2] = (SpongePlatform){
         .pos = (vec2){
-            .x = 150.0f,
-            .y = GROUND_Y - 64.0f
+            .x = 192.0f,
+            .y = 64.0f
         },
-        .length = 48.0f
+        .length = 136.0f
     };
     spongeGame->platforms[3] = (SpongePlatform){
         .pos = (vec2){
-            .x = 100.0f,
-            .y = GROUND_Y - 100.0f
+            .x = 272.0f,
+            .y = 112.0f,
         },
-        .length = 48.0f
+        .length = 68.0f
     };
+
+    for (i32 i = 0; i < NUM_TILE_ROWS; i++) {
+        for (i32 j = 0; j < NUM_TILE_COLS; j++) {
+            spongeGame->levelTileCoatings[i * NUM_TILE_COLS + j] = (TileCoating){0};
+        }
+    }
+
+
+    for (i32 i = 0; i < NUM_SPONGE_PLATFORMS; i++) {
+        SpongePlatform *p = &spongeGame->platforms[i];
+
+        for (f32 tileX = p->pos.x; tileX < p->pos.x + p->length; tileX += 8.0f) {
+            i32 x = tileX / 8.0f;
+            i32 y = p->pos.y / 8.0f;
+            TileCoating *c = &spongeGame->levelTileCoatings[y * NUM_TILE_COLS + x];
+            c->isGround = true;
+        }
+    }
+
+    for (i32 j = 0; j < NUM_TILE_COLS; j++) {
+        i32 y = GROUND_Y / 8.0f;
+        TileCoating *c = &spongeGame->levelTileCoatings[y * NUM_TILE_COLS + j];
+        c->isGround = true;
+    }
+
+    spongeGame->isInitialized = true;
 }
 
 SpongeGameInput parseGameInput (game_input *input, virtual_input *vInput) {
@@ -174,6 +200,13 @@ void enterJumpingState (SpongeMan *sm, SpongeGameInput *input, f32 dt) {
     updateJumpingState(sm, input, dt);
 }
 
+vec2 spongeManFeet (void) {
+    SpongeMan *sm = &spongeGame->spongeMan;
+    f32 feetDist = 16.0f;
+    vec2 feet = vec2Add(sm->pos, (vec2){ .x = 0.0f, .y = feetDist });
+    return feet;
+}
+
 b32 isTouchingPlatform (SpongeMan *sm) {
     f32 feetDist = 16.0f;
     vec2 feet = vec2Add(sm->pos, (vec2){ .x = 0.0f, .y = feetDist });
@@ -240,18 +273,19 @@ void updateSpongeManState (SpongeMan *sm, SpongeGameInput *input, f32 dt) {
             sm->pos.y += sm->vel.y * dtFrac;
         }
 
+        f32 feetDist = 16.0f;
+        vec2 feet = vec2Add(sm->pos, (vec2){ .x = 0.0f, .y = feetDist });
         if (!sm->grounded) {
-            if (sm->pos.y > GROUND_Y) {
-                sm->pos.y = GROUND_Y;
+            if (feet.y > GROUND_Y) {
+                sm->pos.y = GROUND_Y - feetDist;
                 sm->grounded = true;
             }
             else if (sm->vel.y > 0) {
-                f32 feetDist = 16.0f;
-                vec2 feet = vec2Add(sm->pos, (vec2){ .x = 0.0f, .y = feetDist });
                 for (i32 i = 0; i < NUM_SPONGE_PLATFORMS; i++) {
                     SpongePlatform *p = &spongeGame->platforms[i];
+                    f32 platformThickness = 4;
                     if (feet.x >= p->pos.x && feet.x < p->pos.x + p->length &&
-                        feet.y >= p->pos.y && feet.y < p->pos.y + 8)
+                        feet.y >= p->pos.y && feet.y < p->pos.y + platformThickness)
                     {
                         sm->pos.y = p->pos.y - feetDist;
                         sm->vel.y = 0.0f;
@@ -268,21 +302,53 @@ void updateSpongeManState (SpongeMan *sm, SpongeGameInput *input, f32 dt) {
 void updateSpongeGame (SpongeGame *spongeGame, game_input *input, virtual_input *vInput, f32 dt, plat_api platAPI, mem_arena *memory) {
     SpongeGameInput sgInput = parseGameInput(input, vInput);
     updateSpongeManState(&spongeGame->spongeMan, &sgInput, dt);
-    spongeGame->isInitialized = true;
+
+    vec2 feet = spongeManFeet();
+    i32 feetX = feet.x / 8.0f;
+    i32 feetY = feet.y / 8.0f;
+    if (feetX >= 0 && feetX < NUM_TILE_COLS && feet.y >= 0 && feetY < NUM_TILE_ROWS) {
+        TileCoating *c = &spongeGame->levelTileCoatings[feetY * NUM_TILE_COLS + feetX];
+        if (c->isGround) {
+            c->type = TILE_COATING_TYPE_SUDS;
+            c->amount = 1;
+        }
+    }
 }
 
 void drawSpongeGame (SpongeGame *spongeGame, plat_api platAPI) { 
-    for (i32 i = 0; i < NUM_SPONGE_PLATFORMS; i++) {
-        SpongePlatform *p = &spongeGame->platforms[i];
-        {
-            sprite s = defaultSprite();
-            s.pos = p->pos;
-            s.atlasKey = "game_atlas";
-            s.frameKey = "platform";
-            spriteManAddSprite(s);
-        }
-
+    // BACKGROUND
+    {
+        sprite s = defaultSprite();
+        s.textureKey = "background";
+        spriteManAddSprite(s);
     }
+
+    // SUDS + GRIME
+    for (i32 i = 0; i < NUM_TILE_ROWS; i++) {
+        for (i32 j = 0; j < NUM_TILE_COLS; j++) {
+            TileCoating *c = &spongeGame->levelTileCoatings[i * NUM_TILE_COLS + j];
+            vec2 coatingPos = (vec2){ .x = 8.0f * j, .y = 8.0f * i - 8.0f };
+            switch (c->type) {
+                case TILE_COATING_TYPE_NONE: {
+                    // nothing
+                } break;
+                case TILE_COATING_TYPE_SUDS: {
+                    {
+                        sprite s = defaultSprite();
+                        s.pos = coatingPos;
+                        s.atlasKey = "game_atlas";
+                        s.frameKey = "suds_0";
+                        spriteManAddSprite(s);
+                    }
+                } break;
+                case TILE_COATING_TYPE_GRIME: {
+                    // TODO grime
+                } break;
+            }
+        }
+    }
+
+    // SPONGEMAN
     {
         sprite s = defaultSprite();
         s.pos = spongeGame->spongeMan.pos;

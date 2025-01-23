@@ -76,7 +76,7 @@ typedef struct atlas_frame {
     u32 frameHeight;
 } atlas_frame;
 
-#define ATLAS_MAP_MAX_NUM_FRAMES 250
+#define ATLAS_MAP_MAX_NUM_FRAMES 50
 typedef struct atlas_map {
     atlas_frame entries[ATLAS_MAP_MAX_NUM_FRAMES];
 } atlas_map;
@@ -92,7 +92,7 @@ typedef struct atlas_asset {
     u32 width;
     u32 height;
 } atlas_asset;
-#define MAX_NUM_ATLAS_ASSETS 4
+#define MAX_NUM_ATLAS_ASSETS 1
 
 #define HASH_MAP_TYPE atlas_asset
 #include "hash_map.h"
