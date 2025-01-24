@@ -118,7 +118,7 @@ function webglOnRenderStart (): void {
     let gl: WebGLRenderingContext = wglr.glContext;
     gl.viewport(0, 0, wglr.windowWidth, wglr.windowHeight);
     //gl.enable(gl.DEPTH_TEST);
-    gl.enable(gl.CULL_FACE);
+    //gl.enable(gl.CULL_FACE);
     gl.clearColor(0.05, 0.07, 0.16, 0.0);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 

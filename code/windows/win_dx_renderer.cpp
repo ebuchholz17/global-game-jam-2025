@@ -1,4 +1,5 @@
 #include "win_dx_renderer.h"
+#include <d3d12.h>
 
 void copyMemory (u8 *dest, u8 *src, u64 size) {
     for (u64 i = 0; i < size; ++i) {
@@ -263,7 +264,7 @@ D3D12_RASTERIZER_DESC getDefaultRasterizerState () {
     D3D12_RASTERIZER_DESC result = {};
 
     result.FillMode = D3D12_FILL_MODE_SOLID;
-    result.CullMode = D3D12_CULL_MODE_BACK;
+    result.CullMode = D3D12_CULL_MODE_NONE;
     result.FrontCounterClockwise = true;
     result.DepthBias = 0;
     result.DepthBiasClamp = 0.0f;

@@ -4,6 +4,7 @@
 #include "../gng_types.h"
 #include "../gng_platform.h"
 #include "../gng_math.h"
+#include "../hitbox/hitbox.h"
 
 #define SPONGE_ACCEL_SPD 1200.0f
 #define SPONGE_DECEL_SPD 700.0f
@@ -38,9 +39,27 @@ typedef struct SpongeGameInput {
 
 typedef enum {
     SM_STATE_STAND,
-    SM_STATE_RUN,
-    SM_STATE_JUMP
+    SM_STATE_DASH_START,
+    SM_STATE_DASH,
+    SM_STATE_JUMPSQUAT,
+    SM_STATE_JUMP,
+    SM_STATE_FALL
 } SpongeManState;
+
+typedef enum {
+    DIRECTION_LEFT,
+    DIRECTION_RIGHT
+} Direction;
+
+typedef struct AnimationState {
+    char *key;
+    char *prevKey;
+    f32 t;
+    f32 speedMultiplier;
+    u32 currentFrame;
+    u32 currentFrameStep;
+    u32 totalFrames;
+} AnimationState;
 
 typedef struct SpongeMan {
     vec2 pos;
@@ -51,6 +70,10 @@ typedef struct SpongeMan {
     b32 releasedJump;
     b32 grounded;
     b32 onPlatform;
+
+    AnimationState animState;
+    Direction facing;
+    i32 stateFrames;
 } SpongeMan;
 
 typedef struct SpongePlatform {
@@ -70,6 +93,10 @@ typedef struct TileCoating {
     b32 isGround;
 } TileCoating;
 
+typedef char_anim_data *char_anim_data_ptr;
+#define HASH_MAP_TYPE char_anim_data_ptr
+#include "../hash_map.h"
+
 typedef struct SpongeGame {
     b32 isInitialized;
     SpongeMan spongeMan;
@@ -79,6 +106,8 @@ typedef struct SpongeGame {
     //
     SpongePlatform platforms[NUM_SPONGE_PLATFORMS];
     TileCoating levelTileCoatings[NUM_TILE_ROWS * NUM_TILE_COLS];
+
+    char_anim_data_ptr_hash_map animations;
 } SpongeGame;
 
 

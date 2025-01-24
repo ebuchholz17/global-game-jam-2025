@@ -67,4 +67,11 @@ typedef struct sprite_text {
 sprite defaultSprite (void);
 void spriteManAddSprite (sprite s);
 
+void spriteManPushMatrix (mat3x3 transform);
+
+mat3x3 spriteManPeekMatrix ();
+
+mat3x3 spriteManPopMatrix ();
+
+
 #endif

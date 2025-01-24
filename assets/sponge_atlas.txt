@@ -1,0 +1,152 @@
+sponge_atlas.png
+size: 248, 744
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bubble_attack_0
+  rotate: false
+  xy: 2, 2
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+bubble_attack_1
+  rotate: false
+  xy: 84, 2
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+dp_0
+  rotate: false
+  xy: 166, 2
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+dp_1
+  rotate: false
+  xy: 2, 108
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+fp_0
+  rotate: false
+  xy: 84, 108
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+fp_1
+  rotate: false
+  xy: 166, 108
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+fp_2
+  rotate: false
+  xy: 2, 214
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+hit copy
+  rotate: false
+  xy: 84, 214
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+idle
+  rotate: false
+  xy: 166, 214
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+jab
+  rotate: false
+  xy: 2, 320
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+jump_falling
+  rotate: false
+  xy: 84, 320
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+jump_rising
+  rotate: false
+  xy: 166, 320
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+jumpsquat
+  rotate: false
+  xy: 2, 426
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+run_0
+  rotate: false
+  xy: 84, 426
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+run_1
+  rotate: false
+  xy: 166, 426
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+run_2
+  rotate: false
+  xy: 2, 532
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+shield
+  rotate: false
+  xy: 84, 532
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+slide_0
+  rotate: false
+  xy: 166, 532
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+slide_1
+  rotate: false
+  xy: 2, 638
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+suicide_dair_0
+  rotate: false
+  xy: 84, 638
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+suicide_dair_1
+  rotate: false
+  xy: 166, 638
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1

@@ -1,6 +1,6 @@
 #include "hitbox.h"
 
-void loadHitboxData (asset_man *assetMan, void *fileData, char_anim_data *animationData) {
+void loadHitboxData (asset_man *assetMan, char *atlasKey, void *fileData, char_anim_data *animationData) {
     char *start;
     char *end;
     char *nextLineStart;
@@ -27,7 +27,7 @@ void loadHitboxData (asset_man *assetMan, void *fileData, char_anim_data *animat
         }
         frameName[numLettersInFrameName] = 0;
 
-        atlas_frame *frame = getAtlasFrame(assetMan, "atlas", frameName);
+        atlas_frame *frame = getAtlasFrame(assetMan, atlasKey, frameName);
         frameData->frameKey = frame->key;
         //int mapIndex = (int)getAtlasFrameIndex(assetMan, ATLAS_KEY_GAME, frameName);
         //for (int j = 0; j < 500; ++j) {

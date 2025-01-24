@@ -15,6 +15,11 @@ plat_console_log *debugConsoleLog;
 #include "hitbox/hitbox.c"
 #include "sponge_game/sponge_game.c"
 
+typedef struct key_path_pair {
+    char *key;
+    char *path;
+} key_path_pair;
+
 void loadTextureOnGPU (mem_arena *renderMemory, u32 id, u32 width, u32 height, u8 *pixels) {
     render_cmd_header *header = (render_cmd_header *)allocMemory(renderMemory, sizeof(render_cmd_header));
     header->type = RENDER_CMD_TYPE_LOAD_TEXTURE;
@@ -254,6 +259,20 @@ UPDATE_GNG_GAME(updateGNGGame) {
             .key = "game_atlas"
         });
         asset_to_load_listPush(assetList, (asset_to_load){
+            .name = "sponge_atlas_data",
+            .path = "assets/sponge_atlas.txt",
+            .type = ASSET_TO_LOAD_TYPE_ATLAS_DATA,
+            .loaded = false,
+            .key = "sponge_atlas"
+        });
+        asset_to_load_listPush(assetList, (asset_to_load){
+            .name = "sponge_atlas_texture",
+            .path = "assets/sponge_atlas.bmp",
+            .type = ASSET_TO_LOAD_TYPE_ATLAS_TEXTURE,
+            .loaded = false,
+            .key = "sponge_atlas"
+        });
+        asset_to_load_listPush(assetList, (asset_to_load){
             .name = "background",
             .path = "assets/background.bmp",
             .type = ASSET_TO_LOAD_TYPE_BITMAP,
@@ -267,6 +286,27 @@ UPDATE_GNG_GAME(updateGNGGame) {
             .loaded = false,
             .key = "font"
         });
+
+        // Sponge frame data
+        key_path_pair hitboxFiles[] = {
+            {.key = "sponge_idle", .path = "assets/hitbox/sponge_idle.txt" },
+            {.key = "sponge_jump_falling", .path = "assets/hitbox/sponge_jump_falling.txt" },
+            {.key = "sponge_jump_rising", .path = "assets/hitbox/sponge_jump_rising.txt" },
+            {.key = "sponge_jumpsquat", .path = "assets/hitbox/sponge_jumpsquat.txt" },
+            {.key = "sponge_run", .path = "assets/hitbox/sponge_run.txt" },
+        };
+        u32 numHitboxFiles = sizeof(hitboxFiles) / sizeof(key_path_pair);
+        for (u32 hitboxIndex = 0; hitboxIndex < numHitboxFiles; hitboxIndex++) {
+            key_path_pair *kpPair = &hitboxFiles[hitboxIndex];
+            asset_to_load_listPush(assetList, (asset_to_load){
+                .name = kpPair->key,
+                .path = kpPair->path,
+                .type = ASSET_TO_LOAD_TYPE_DATA,
+                .loaded = false,
+                .key = kpPair->key
+            });
+        }
+
         for (u32 assetIndex = 0; assetIndex < assetList->numValues; ++assetIndex) {
             asset_to_load *asset = &assetList->values[assetIndex];
             platAPI.loadFile(asset->name, asset->path);
@@ -396,7 +436,7 @@ UPDATE_GNG_GAME(updateGNGGame) {
         }
         f32 remainingTime = dt;
         remainingTime = remainingTime > 0.2f ? 0.2f : remainingTime;
-        f32 updateDelta = (1.0f / 100.0f);
+        f32 updateDelta = (1.0f / 60.0f);
 
         spriteManPushTransform((sprite_transform){ .pos = gameOrigin, .scale = gameScale });
 
