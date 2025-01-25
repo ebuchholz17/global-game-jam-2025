@@ -4,7 +4,7 @@
         <key>fileFormatVersion</key>
         <int>6</int>
         <key>texturePackerVersion</key>
-        <string>7.5.0</string>
+        <string>7.4.0</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -181,11 +181,13 @@
             <key type="filename">sponge_atlas/fp_1.png</key>
             <key type="filename">sponge_atlas/fp_2.png</key>
             <key type="filename">sponge_atlas/hit copy.png</key>
+            <key type="filename">sponge_atlas/hit.png</key>
             <key type="filename">sponge_atlas/idle.png</key>
             <key type="filename">sponge_atlas/jab.png</key>
             <key type="filename">sponge_atlas/jump_falling.png</key>
             <key type="filename">sponge_atlas/jump_rising.png</key>
             <key type="filename">sponge_atlas/jumpsquat.png</key>
+            <key type="filename">sponge_atlas/on_ground.png</key>
             <key type="filename">sponge_atlas/run_0.png</key>
             <key type="filename">sponge_atlas/run_1.png</key>
             <key type="filename">sponge_atlas/run_2.png</key>

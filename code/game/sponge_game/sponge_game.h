@@ -7,11 +7,13 @@
 #include "../hitbox/hitbox.h"
 
 #define SPONGE_ACCEL_SPD 1200.0f
-#define SPONGE_DECEL_SPD 700.0f
-#define SPONGE_MAX_RUN_SPD 150.0f
+#define SPONGE_DECEL_SPD 200.0f
+#define SPONGE_DASH_START_SPD 150.0f
+#define SPONGE_MAX_RUN_SPD 135.0f
 #define SPONGE_JUMP_VEL 300.0f
 #define SPONGE_GRAVITY 1500.0f
 #define SPONGE_AIR_CONTROL 600.0f
+#define FRAMETIME (1.0f / 60.0f)
 
 #define NUM_SPONGE_PLATFORMS 4
 #define GROUND_Y 160.0f
@@ -35,6 +37,8 @@ typedef struct SpongeGameInput {
     input_key left;
     input_key right;
     input_key jump;
+    input_key attack;
+    input_key special;
 } SpongeGameInput;
 
 typedef enum {
@@ -43,8 +47,28 @@ typedef enum {
     SM_STATE_DASH,
     SM_STATE_JUMPSQUAT,
     SM_STATE_JUMP,
-    SM_STATE_FALL
+    SM_STATE_LANDING,
+    SM_STATE_FALL,
+    SM_STATE_ATTACKING
 } SpongeManState;
+
+typedef enum {
+    SM_ATTACK_NONE,
+    SM_ATTACK_JAB,
+    SM_ATTACK_LOW_KICK,
+    SM_ATTACK_BUBBLE_ATTACK,
+    SM_ATTACK_UPPERCUT,
+    SM_ATTACK_FP,
+    SM_ATTACK_BUBBLE_LAUNCH,
+    SM_ATTACK_SLIDE,
+    SM_ATTACK_DP
+} SpongeManAttackType;
+
+typedef struct SpongeManAttack {
+    SpongeManAttackType type;
+    b32 isChargeable;
+
+} SpongeManAttack;
 
 typedef enum {
     DIRECTION_LEFT,
@@ -73,7 +97,8 @@ typedef struct SpongeMan {
 
     AnimationState animState;
     Direction facing;
-    i32 stateFrames;
+    f32 stateTimer;
+    b32 isAttacking;
 } SpongeMan;
 
 typedef struct SpongePlatform {

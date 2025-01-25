@@ -1,5 +1,5 @@
 sponge_atlas.png
-size: 248, 744
+size: 1888, 108
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -26,126 +26,140 @@ dp_0
   index: -1
 dp_1
   rotate: false
-  xy: 2, 108
+  xy: 248, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0
   index: -1
 fp_0
   rotate: false
-  xy: 84, 108
+  xy: 330, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0
   index: -1
 fp_1
   rotate: false
-  xy: 166, 108
+  xy: 412, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0
   index: -1
 fp_2
   rotate: false
-  xy: 2, 214
+  xy: 494, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0
   index: -1
 hit copy
   rotate: false
-  xy: 84, 214
+  xy: 576, 2
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+hit
+  rotate: false
+  xy: 658, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0
   index: -1
 idle
   rotate: false
-  xy: 166, 214
+  xy: 740, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0
   index: -1
 jab
   rotate: false
-  xy: 2, 320
+  xy: 822, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0
   index: -1
 jump_falling
   rotate: false
-  xy: 84, 320
+  xy: 904, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0
   index: -1
 jump_rising
   rotate: false
-  xy: 166, 320
+  xy: 986, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0
   index: -1
 jumpsquat
   rotate: false
-  xy: 2, 426
+  xy: 1068, 2
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+on_ground
+  rotate: false
+  xy: 1150, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0
   index: -1
 run_0
   rotate: false
-  xy: 84, 426
+  xy: 1232, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0
   index: -1
 run_1
   rotate: false
-  xy: 166, 426
+  xy: 1314, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0
   index: -1
 run_2
   rotate: false
-  xy: 2, 532
+  xy: 1396, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0
   index: -1
 shield
   rotate: false
-  xy: 84, 532
+  xy: 1478, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0
   index: -1
 slide_0
   rotate: false
-  xy: 166, 532
+  xy: 1560, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0
   index: -1
 slide_1
   rotate: false
-  xy: 2, 638
+  xy: 1642, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0
   index: -1
 suicide_dair_0
   rotate: false
-  xy: 84, 638
+  xy: 1724, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0
   index: -1
 suicide_dair_1
   rotate: false
-  xy: 166, 638
+  xy: 1806, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0

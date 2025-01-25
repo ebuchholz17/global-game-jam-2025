@@ -289,12 +289,25 @@ UPDATE_GNG_GAME(updateGNGGame) {
 
         // Sponge frame data
         key_path_pair hitboxFiles[] = {
+            {.key = "sponge_bubble_attack", .path = "assets/hitbox/sponge_bubble_attack.txt" },
+            {.key = "sponge_dodge", .path = "assets/hitbox/sponge_dodge.txt" },
+            {.key = "sponge_dp", .path = "assets/hitbox/sponge_dp.txt" },
+            {.key = "sponge_getup", .path = "assets/hitbox/sponge_getup.txt" },
+            {.key = "sponge_hit", .path = "assets/hitbox/sponge_hit.txt" },
             {.key = "sponge_idle", .path = "assets/hitbox/sponge_idle.txt" },
+            {.key = "sponge_jab", .path = "assets/hitbox/sponge_jab.txt" },
             {.key = "sponge_jump_falling", .path = "assets/hitbox/sponge_jump_falling.txt" },
             {.key = "sponge_jump_rising", .path = "assets/hitbox/sponge_jump_rising.txt" },
             {.key = "sponge_jumpsquat", .path = "assets/hitbox/sponge_jumpsquat.txt" },
+            {.key = "sponge_on_ground", .path = "assets/hitbox/sponge_on_ground.txt" },
             {.key = "sponge_run", .path = "assets/hitbox/sponge_run.txt" },
+            {.key = "sponge_shield", .path = "assets/hitbox/sponge_shield.txt" },
+            {.key = "sponge_slide", .path = "assets/hitbox/sponge_slide.txt" },
+            {.key = "sponge_slide_startup", .path = "assets/hitbox/sponge_slide_startup.txt" },
+            {.key = "sponge_special_jab", .path = "assets/hitbox/sponge_special_jab.txt" },
+            {.key = "sponge_suicide_dair", .path = "assets/hitbox/sponge_suicide_dair.txt" },
         };
+
         u32 numHitboxFiles = sizeof(hitboxFiles) / sizeof(key_path_pair);
         for (u32 hitboxIndex = 0; hitboxIndex < numHitboxFiles; hitboxIndex++) {
             key_path_pair *kpPair = &hitboxFiles[hitboxIndex];
