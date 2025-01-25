@@ -157,15 +157,14 @@ void enterDashStartState (SpongeMan *sm, f32 dt) {
 }
 
 
-
-
-
-
 void enterJumpingState (SpongeMan *sm, SpongeGameInput *input, f32 dt) {
-    sm->grounded = false;
-    sm->jumpTime = 0.0f;
-    sm->releasedJump = false;
-    sm->vel.y = -SPONGE_JUMP_VEL;
+    if (!sm->isJumping) {
+        sm->grounded = false;
+        sm->jumpTime = 0.0f;
+        sm->isJumping = true;
+        sm->releasedJump = false;
+        sm->vel.y = -SPONGE_JUMP_VEL;
+    }
     sm->state = SM_STATE_JUMP;
     sm->animState = (AnimationState){ .key = "sponge_jump_rising" };
     startAnimState(&sm->animState);
@@ -197,10 +196,9 @@ b32 isTouchingPlatform (SpongeMan *sm, f32 *outPlatY) {
 void enterFallingState (SpongeMan *sm, f32 dt) {
     sm->fullJumpAntiGrav = 0.0f;
     sm->state = SM_STATE_FALL;
-    if (!sm->isAttacking) {
-        sm->animState = (AnimationState){ .key = "sponge_jump_falling" };
-        startAnimState(&sm->animState);
-    }
+    sm->animState = (AnimationState){ .key = "sponge_jump_falling" };
+    sm->isJumping = false;
+    startAnimState(&sm->animState);
 }
 
 void onFallOffPlatform (SpongeMan *sm, f32 dt) {
@@ -212,6 +210,39 @@ void onFallOffPlatform (SpongeMan *sm, f32 dt) {
 }
 
 void enterLandingState (SpongeMan * sm, f32 dt) {
+    sm->landingLag = 0.0f;
+    if (sm->isAttacking) {
+        switch (sm->attackType) {
+            case SM_ATTACK_NONE: {
+            } break;
+            case SM_ATTACK_JAB: {
+                sm->landingLag = 3 * FRAMETIME;
+            } break;
+            case SM_ATTACK_LOW_KICK: {
+                sm->landingLag = 8 * FRAMETIME;
+            } break;
+            case SM_ATTACK_BUBBLE_ATTACK: {
+                sm->landingLag = 8 * FRAMETIME;
+            } break;
+            case SM_ATTACK_UPPERCUT: {
+                sm->landingLag = 5 * FRAMETIME;
+            } break;
+            case SM_ATTACK_FP: {
+                sm->landingLag = 10 * FRAMETIME;
+            } break;
+            case SM_ATTACK_BUBBLE_LAUNCH: {
+                sm->landingLag = 5 * FRAMETIME;
+            } break;
+            case SM_ATTACK_SLIDE: {
+                sm->landingLag = 5 * FRAMETIME;
+            } break;
+            case SM_ATTACK_DP: {
+                sm->landingLag = 5 * FRAMETIME;
+            } break;
+        }
+    }
+    sm->isAttacking = false;
+
     sm->stateTimer = 0;
     sm->state = SM_STATE_LANDING;
     sm->animState = (AnimationState){ .key = "sponge_getup" };
@@ -222,10 +253,16 @@ void enterLandingState (SpongeMan * sm, f32 dt) {
 void enterRunningState (SpongeMan *sm, f32 dt) {
     sm->stateTimer = 0.0f;
     sm->state = SM_STATE_DASH;
+    sm->animState = (AnimationState){ .key = "sponge_run" };
+    startAnimState(&sm->animState);
 }
 
 char *attackTypeToAnimStateKey (SpongeManAttackType type) {
     switch (type) {
+        case SM_ATTACK_NONE: {
+             ASSERT(false);
+             return 0;
+        } break;
         case SM_ATTACK_JAB: {
             return "sponge_jab";
         } break;
@@ -254,10 +291,20 @@ char *attackTypeToAnimStateKey (SpongeManAttackType type) {
     return 0;
 }
 
-void enterAttackState (SpongeMan *sm, SpongeManAttackType attackType) {
-    //sm->stateTimer = 0;
-    //sm->state = SM_STATE_ATTACKING;
+void enterAttackAirborneState (SpongeMan *sm, SpongeManAttackType attackType) {
+    sm->attackType = attackType;
     sm->isAttacking = true;
+    sm->stateTimer = 0;
+    sm->state = SM_STATE_ATTACKING_AIRBORNE;
+    sm->animState = (AnimationState){ .key = attackTypeToAnimStateKey(attackType) };
+    startAnimState(&sm->animState);
+}
+
+void enterAttackGroundedState (SpongeMan *sm, SpongeManAttackType attackType) {
+    sm->attackType = attackType;
+    sm->isAttacking = true;
+    sm->stateTimer = 0;
+    sm->state = SM_STATE_ATTACKING_GROUNDED;
     sm->animState = (AnimationState){ .key = attackTypeToAnimStateKey(attackType) };
     startAnimState(&sm->animState);
 }
@@ -281,6 +328,49 @@ SpongeManAttackType tryDoAttack (SpongeMan *sm, SpongeGameInput *input, f32 dt) 
     }
     return SM_ATTACK_NONE;
 
+}
+
+void updateAttackingGroundedState (SpongeMan *sm, SpongeGameInput *input, f32 dt) {
+    if (!sm->isAttacking) {
+        enterStandingState(sm, input, dt);
+    }
+}
+
+void updateAttackingAirborneState (SpongeMan *sm, SpongeGameInput *input, f32 dt) {
+    if (sm->isJumping) {
+        sm->jumpTime += dt;
+        if (!input->jump.down) {
+            sm->releasedJump = true;
+        }
+
+        sm->fullJumpAntiGrav = 0.0f;
+        if (sm->jumpTime < 0.3f && !sm->releasedJump) {
+            sm->fullJumpAntiGrav = SPONGE_GRAVITY * 0.7f;
+        }
+    }
+
+    if (input->left.down) {
+        sm->vel.x -= SPONGE_AIR_CONTROL * dt;
+    }
+    if (input->right.down) {
+        sm->vel.x += SPONGE_AIR_CONTROL * dt;
+    }
+    // run max speed = aerial max speed
+    if (sm->vel.x > SPONGE_MAX_RUN_SPD) {
+        sm->vel.x = SPONGE_MAX_RUN_SPD;
+    }
+    if (sm->vel.x < -SPONGE_MAX_RUN_SPD) {
+        sm->vel.x = -SPONGE_MAX_RUN_SPD;
+    }
+
+    if (!sm->isAttacking) {
+        if (sm->vel.y > 0) {
+            enterFallingState(sm, dt);
+        }
+        else {
+            enterJumpingState(sm, input, dt);
+        }
+    }
 }
 
 void updateJumpingState (SpongeMan *sm, SpongeGameInput *input, f32 dt) {
@@ -310,7 +400,7 @@ void updateJumpingState (SpongeMan *sm, SpongeGameInput *input, f32 dt) {
 
     SpongeManAttackType attackType = tryDoAttack(sm, input, dt);
     if (attackType != SM_ATTACK_NONE) {
-        enterAttackState(sm, attackType);
+        enterAttackAirborneState(sm, attackType);
     }
     else if (sm->vel.y > 0) {
         enterFallingState(sm, dt);
@@ -333,7 +423,7 @@ void updateFallingState (SpongeMan *sm, SpongeGameInput *input, f32 dt) {
     }
     SpongeManAttackType attackType = tryDoAttack(sm, input, dt);
     if (attackType != SM_ATTACK_NONE) {
-        enterAttackState(sm, attackType);
+        enterAttackAirborneState(sm, attackType);
     }
 }
 
@@ -341,7 +431,7 @@ void updateRunningInput (SpongeMan *sm, SpongeGameInput *input, f32 dt) {
     sm->stateTimer += dt;
     SpongeManAttackType attackType = tryDoAttack(sm, input, dt);
     if (attackType != SM_ATTACK_NONE) {
-        enterAttackState(sm, attackType);
+        enterAttackGroundedState(sm, attackType);
     }
     else if (input->jump.justPressed) {
         enterJumpsquatState(sm, input, dt);
@@ -417,7 +507,7 @@ void updateJumpsquatState (SpongeMan *sm, SpongeGameInput *input, f32 dt) {
 
 void updateLandingState (SpongeMan *sm, SpongeGameInput *input, f32 dt) {
     sm->stateTimer += dt;
-    if (sm->stateTimer >= 3.0f * FRAMETIME) {
+    if (sm->stateTimer >= 3.0f * FRAMETIME + sm->landingLag) {
         enterStandingState(sm, input, dt);
     }
 }
@@ -425,7 +515,7 @@ void updateLandingState (SpongeMan *sm, SpongeGameInput *input, f32 dt) {
 void updateStandingState (SpongeMan *sm, SpongeGameInput *input, f32 dt) {
     SpongeManAttackType attackType = tryDoAttack(sm, input, dt);
     if (attackType != SM_ATTACK_NONE) {
-        enterAttackState(sm, attackType);
+        enterAttackGroundedState(sm, attackType);
     }
     else if (input->jump.justPressed) {
         enterJumpsquatState(sm, input, dt);
@@ -437,7 +527,7 @@ void updateStandingState (SpongeMan *sm, SpongeGameInput *input, f32 dt) {
         else if (input->right.down) {
             sm->facing = DIRECTION_RIGHT;
         }
-        enterDashStartState(sm, dt);
+        enterRunningState(sm, dt);
     }
 }
 
@@ -453,7 +543,7 @@ void updateDashStartState (SpongeMan *sm, SpongeGameInput *input, f32 dt) {
     sm->stateTimer += dt;
     SpongeManAttackType attackType = tryDoAttack(sm, input, dt);
     if (attackType != SM_ATTACK_NONE) {
-        enterAttackState(sm, attackType);
+        enterAttackGroundedState(sm, attackType);
     }
     else if (input->jump.justPressed) {
         enterJumpsquatState(sm, input, dt);
@@ -502,6 +592,13 @@ void updateSpongeManState (SpongeMan *sm, SpongeGameInput *input, f32 dt) {
         case SM_STATE_FALL: {
             updateFallingState(sm, input, dt);
         } break;
+
+        case SM_STATE_ATTACKING_AIRBORNE: {
+            updateAttackingAirborneState(sm, input, dt);
+        } break;
+        case SM_STATE_ATTACKING_GROUNDED: {
+            updateAttackingGroundedState(sm, input, dt);
+        } break;
     }
 
     f32 iterations = 10;
@@ -541,6 +638,7 @@ void updateSpongeManState (SpongeMan *sm, SpongeGameInput *input, f32 dt) {
                 sm->pos.y = GROUND_Y - feetDist;
                 sm->vel.y = 0.0f;
                 sm->grounded = true;
+                sm->isJumping = false;
                 onBecomeGrounded(sm, dt);
             }
             else if (sm->vel.y > 0) {
@@ -549,6 +647,7 @@ void updateSpongeManState (SpongeMan *sm, SpongeGameInput *input, f32 dt) {
                     sm->pos.y = platY - feetDist;
                     sm->vel.y = 0.0f;
                     sm->grounded = true;
+                    sm->isJumping = false;
                     sm->onPlatform = true;
                     onBecomeGrounded(sm, dt);
                 }
@@ -566,12 +665,6 @@ void updateSpongeManState (SpongeMan *sm, SpongeGameInput *input, f32 dt) {
     if (animDone) {
         if (sm->isAttacking) {
             sm->isAttacking = false;
-            if (sm->grounded) {
-                enterStandingState(sm, input, dt);
-            }
-            else {
-                enterFallingState(sm, dt);
-            }
         }
     }
 }

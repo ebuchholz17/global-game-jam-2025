@@ -1,0 +1,82 @@
+cockroach_atlas.png
+size: 904, 108
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hit
+  rotate: false
+  xy: 2, 2
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+idle
+  rotate: false
+  xy: 84, 2
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+jab
+  rotate: false
+  xy: 166, 2
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+jump_0
+  rotate: false
+  xy: 248, 2
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+jump_1
+  rotate: false
+  xy: 330, 2
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+leg_attack_0
+  rotate: false
+  xy: 412, 2
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+leg_attack_1
+  rotate: false
+  xy: 494, 2
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+on_ground
+  rotate: false
+  xy: 576, 2
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+walk_0
+  rotate: false
+  xy: 658, 2
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+walk_1
+  rotate: false
+  xy: 740, 2
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1
+walk_2
+  rotate: false
+  xy: 822, 2
+  size: 80, 104
+  orig: 80, 104
+  offset: 0, 0
+  index: -1

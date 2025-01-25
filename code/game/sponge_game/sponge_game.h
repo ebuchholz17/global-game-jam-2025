@@ -49,7 +49,8 @@ typedef enum {
     SM_STATE_JUMP,
     SM_STATE_LANDING,
     SM_STATE_FALL,
-    SM_STATE_ATTACKING
+    SM_STATE_ATTACKING_GROUNDED,
+    SM_STATE_ATTACKING_AIRBORNE
 } SpongeManState;
 
 typedef enum {
@@ -99,6 +100,9 @@ typedef struct SpongeMan {
     Direction facing;
     f32 stateTimer;
     b32 isAttacking;
+    SpongeManAttackType attackType;
+    b32 isJumping;
+    f32 landingLag;
 } SpongeMan;
 
 typedef struct SpongePlatform {
