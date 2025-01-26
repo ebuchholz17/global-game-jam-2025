@@ -45,7 +45,7 @@ WASM_EXPORT void initGame (void) {
    memStart = memCurrent; 
 
    u32 mainMemorySize = 10 * 1024 * 1024;
-   u32 assetMemorySize = 10 * 1024 * 1024;
+   u32 assetMemorySize = 16 * 1024 * 1024;
    u32 scratchMemorySize = 10 * 1024 * 1024;
 
    platAPI = (plat_api){

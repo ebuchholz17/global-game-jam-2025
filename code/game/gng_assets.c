@@ -275,6 +275,7 @@ void parseAtlasData (asset_man *assetMan, atlas_asset *atlas, u8 *data) {
 atlas_frame *getAtlasFrame (asset_man *assetMan, char *atlasKey, char *frameName) {
     atlas_frame *result;
     atlas_asset *textureAtlas = getAtlas(assetMan, atlasKey);
+    ASSERT(textureAtlas != 0);
 
     u32 hash = hashMapHashString(frameName);
     u32 mapIndex = hash % ATLAS_MAP_MAX_NUM_FRAMES;
