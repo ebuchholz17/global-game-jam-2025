@@ -1,0 +1,166 @@
+game_atlas.png
+size: 58, 584
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dpad_down_down
+  rotate: false
+  xy: 2, 82
+  size: 42, 54
+  orig: 42, 54
+  offset: 0, 0
+  index: -1
+dpad_down_up
+  rotate: false
+  xy: 2, 138
+  size: 42, 54
+  orig: 42, 54
+  offset: 0, 0
+  index: -1
+dpad_left_down
+  rotate: false
+  xy: 2, 194
+  size: 54, 42
+  orig: 54, 42
+  offset: 0, 0
+  index: -1
+dpad_left_up
+  rotate: false
+  xy: 2, 238
+  size: 54, 42
+  orig: 54, 42
+  offset: 0, 0
+  index: -1
+dpad_right_down
+  rotate: false
+  xy: 2, 282
+  size: 54, 42
+  orig: 54, 42
+  offset: 0, 0
+  index: -1
+dpad_right_up
+  rotate: false
+  xy: 2, 326
+  size: 54, 42
+  orig: 54, 42
+  offset: 0, 0
+  index: -1
+dpad_up_down
+  rotate: false
+  xy: 2, 370
+  size: 42, 54
+  orig: 42, 54
+  offset: 0, 0
+  index: -1
+dpad_up_up
+  rotate: false
+  xy: 2, 426
+  size: 42, 54
+  orig: 42, 54
+  offset: 0, 0
+  index: -1
+face_button_down
+  rotate: false
+  xy: 2, 482
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+face_button_up
+  rotate: false
+  xy: 2, 533
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+grime_0
+  rotate: false
+  xy: 38, 2
+  size: 8, 16
+  orig: 8, 16
+  offset: 0, 0
+  index: -1
+grime_1
+  rotate: false
+  xy: 48, 2
+  size: 8, 16
+  orig: 8, 16
+  offset: 0, 0
+  index: -1
+grime_2
+  rotate: false
+  xy: 2, 20
+  size: 8, 16
+  orig: 8, 16
+  offset: 0, 0
+  index: -1
+hitbox_frame_data
+  rotate: false
+  xy: 14, 2
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+hurtbox_frame_data
+  rotate: false
+  xy: 26, 2
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+particle_blue_big
+  rotate: false
+  xy: 2, 2
+  size: 2, 2
+  orig: 2, 2
+  offset: 0, 0
+  index: -1
+particle_pink_big
+  rotate: false
+  xy: 6, 2
+  size: 2, 2
+  orig: 2, 2
+  offset: 0, 0
+  index: -1
+particle_white_big
+  rotate: false
+  xy: 10, 2
+  size: 2, 2
+  orig: 2, 2
+  offset: 0, 0
+  index: -1
+platform
+  rotate: false
+  xy: 2, 38
+  size: 48, 8
+  orig: 48, 8
+  offset: 0, 0
+  index: -1
+sponge_man
+  rotate: false
+  xy: 2, 48
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+suds_0
+  rotate: false
+  xy: 12, 20
+  size: 8, 16
+  orig: 8, 16
+  offset: 0, 0
+  index: -1
+suds_1
+  rotate: false
+  xy: 22, 20
+  size: 8, 16
+  orig: 8, 16
+  offset: 0, 0
+  index: -1
+suds_2
+  rotate: false
+  xy: 32, 20
+  size: 8, 16
+  orig: 8, 16
+  offset: 0, 0
+  index: -1
