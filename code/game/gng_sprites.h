@@ -73,5 +73,7 @@ mat3x3 spriteManPeekMatrix ();
 
 mat3x3 spriteManPopMatrix ();
 
+void spriteManPushTransform (sprite_transform transform) ;
+void spriteManAddText (sprite_text textInfo) ;
 
 #endif

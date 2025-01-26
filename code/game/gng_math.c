@@ -28,6 +28,24 @@ f32 cos2PI (f32 x) {
     return fastCos2PI(x);
 }
 
+float sqrtF32 (f32 num) {
+    if (num < 0.0f) {
+        return -1.0f; // error
+    }
+    f32 error = 0.00001f * num;
+
+    f32 estimate = num;
+    f32 test;
+    u32 iterations = 0;
+    do {
+        ++iterations;
+        estimate = (num / estimate + estimate) / 2.0f;
+        test = estimate - (num / estimate);
+        if (test < 0) { test = -test; }
+    } while (test > error && iterations < 50);
+    return estimate;
+}
+
 mat3x3 mat3x3MatrixMul (mat3x3 a, mat3x3 b) {
     mat3x3 result = {
         .m[0] = a.m[0]*b.m[0] + a.m[1]*b.m[3] + a.m[2]*b.m[6],
@@ -194,6 +212,19 @@ vec2 vec2HadamardMul (vec2 a, vec2 b) {
 f32 vec2Dot (vec2 a, vec2 b) {
     return a.x * b.x + a.y * b.y;
 }
+
+f32 vec2LengthSqr (vec2 a) {
+    return vec2Dot(a, a);
+}
+
+f32 vec2Length (vec2 a) {
+    return sqrtF32(vec2LengthSqr(a));
+}
+
+vec2 vec2Normalize (vec2 a) {
+    return vec2ScalarMul((1.0f / vec2Length(a)), a);
+}
+
 
 // shortcuts for using mat3x3's with vec2's
 vec2 vec2Mat3x3Mul (mat3x3 m, vec2 v){

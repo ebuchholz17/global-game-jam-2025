@@ -92,7 +92,7 @@ typedef struct atlas_asset {
     u32 width;
     u32 height;
 } atlas_asset;
-#define MAX_NUM_ATLAS_ASSETS 2
+#define MAX_NUM_ATLAS_ASSETS 3
 
 #define HASH_MAP_TYPE atlas_asset
 #include "hash_map.h"

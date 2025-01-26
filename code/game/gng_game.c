@@ -273,6 +273,20 @@ UPDATE_GNG_GAME(updateGNGGame) {
             .key = "sponge_atlas"
         });
         asset_to_load_listPush(assetList, (asset_to_load){
+            .name = "cockroach_atlas_data",
+            .path = "assets/cockroach_atlas.txt",
+            .type = ASSET_TO_LOAD_TYPE_ATLAS_DATA,
+            .loaded = false,
+            .key = "cockroach_atlas"
+        });
+        asset_to_load_listPush(assetList, (asset_to_load){
+            .name = "cockroach_atlas_texture",
+            .path = "assets/cockroach_atlas.bmp",
+            .type = ASSET_TO_LOAD_TYPE_ATLAS_TEXTURE,
+            .loaded = false,
+            .key = "cockroach_atlas"
+        });
+        asset_to_load_listPush(assetList, (asset_to_load){
             .name = "background",
             .path = "assets/background.bmp",
             .type = ASSET_TO_LOAD_TYPE_BITMAP,
@@ -289,9 +303,20 @@ UPDATE_GNG_GAME(updateGNGGame) {
 
         // Sponge frame data
         key_path_pair hitboxFiles[] = {
+            {.key = "cockroach_dodge", .path = "assets/hitbox/cockroach_dodge.txt" },
+            {.key = "cockroach_getup", .path = "assets/hitbox/cockroach_getup.txt" },
+            {.key = "cockroach_hit", .path = "assets/hitbox/cockroach_hit.txt" },
+            {.key = "cockroach_idle", .path = "assets/hitbox/cockroach_idle.txt" },
+            {.key = "cockroach_jab", .path = "assets/hitbox/cockroach_jab.txt" },
+            {.key = "cockroach_jump", .path = "assets/hitbox/cockroach_jump.txt" },
+            {.key = "cockroach_jumpsquat", .path = "assets/hitbox/cockroach_jumpsquat.txt" },
+            {.key = "cockroach_leg_attack", .path = "assets/hitbox/cockroach_leg_attack.txt" },
+            {.key = "cockroach_on_ground", .path = "assets/hitbox/cockroach_on_ground.txt" },
+            {.key = "cockroach_walk", .path = "assets/hitbox/cockroach_walk.txt" },
             {.key = "sponge_bubble_attack", .path = "assets/hitbox/sponge_bubble_attack.txt" },
             {.key = "sponge_dodge", .path = "assets/hitbox/sponge_dodge.txt" },
             {.key = "sponge_dp", .path = "assets/hitbox/sponge_dp.txt" },
+            {.key = "sponge_fp", .path = "assets/hitbox/sponge_fp.txt" },
             {.key = "sponge_getup", .path = "assets/hitbox/sponge_getup.txt" },
             {.key = "sponge_hit", .path = "assets/hitbox/sponge_hit.txt" },
             {.key = "sponge_idle", .path = "assets/hitbox/sponge_idle.txt" },

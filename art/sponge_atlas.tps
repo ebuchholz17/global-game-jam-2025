@@ -180,10 +180,10 @@
             <key type="filename">sponge_atlas/fp_0.png</key>
             <key type="filename">sponge_atlas/fp_1.png</key>
             <key type="filename">sponge_atlas/fp_2.png</key>
-            <key type="filename">sponge_atlas/hit copy.png</key>
             <key type="filename">sponge_atlas/hit.png</key>
             <key type="filename">sponge_atlas/idle.png</key>
             <key type="filename">sponge_atlas/jab.png</key>
+            <key type="filename">sponge_atlas/jab_X.png</key>
             <key type="filename">sponge_atlas/jump_falling.png</key>
             <key type="filename">sponge_atlas/jump_rising.png</key>
             <key type="filename">sponge_atlas/jumpsquat.png</key>

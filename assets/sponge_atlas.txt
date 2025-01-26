@@ -52,28 +52,28 @@ fp_2
   orig: 80, 104
   offset: 0, 0
   index: -1
-hit copy
+hit
   rotate: false
   xy: 576, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0
   index: -1
-hit
+idle
   rotate: false
   xy: 658, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0
   index: -1
-idle
+jab
   rotate: false
   xy: 740, 2
   size: 80, 104
   orig: 80, 104
   offset: 0, 0
   index: -1
-jab
+jab_X
   rotate: false
   xy: 822, 2
   size: 80, 104

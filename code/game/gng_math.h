@@ -98,5 +98,9 @@ b32 rectContainsPoint (rect r, f32 x, f32 y);
 b32 rectsIntersect (rect a, rect b);
 //f32 vec3Length (vec3 a);
 //vec3 vec3Normalize (vec3 a);
+vec2 vec2Normalize (vec2 a);
+f32 vec2LengthSqr (vec2 a);
+f32 vec2Length (vec2 a); 
+
 
 #endif
